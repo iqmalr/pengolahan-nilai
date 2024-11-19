@@ -40,6 +40,10 @@ class Raport extends Model
                 ->where('siswa_id', $raport->siswa_id)
                 ->where('jenis_penilaian', 'Tugas')
                 ->avg('nilai');
+            $nilaiUlanganHarian = $raport->siswa->penilaians()
+                ->where('siswa_id', $raport->siswa_id)
+                ->where('jenis_penilaian', 'Ulangan Harian')
+                ->avg('nilai');
             // dd($nilaiTugas);
             $nilaiUTS = $raport->siswa->penilaians()
                 ->where('siswa_id', $raport->siswa_id)
@@ -53,10 +57,11 @@ class Raport extends Model
             // dd($nilaiUAS);
             // dd([
             //     'nilaiTugas' => $nilaiTugas,
+            //     'nilaiUlanganHarian' => $nilaiUlanganHarian,
             //     'nilaiUTS' => $nilaiUTS,
             //     'nilaiUAS' => $nilaiUAS
             // ]);
-            $nilaiAkhir = ($nilaiTugas * 0.25) + ($nilaiUTS * 0.35) + ($nilaiUAS * 0.40);
+            $nilaiAkhir = ($nilaiTugas * 0.10) + ($nilaiUlanganHarian * 0.15) + ($nilaiUTS * 0.35) + ($nilaiUAS * 0.40);
             // dd($nilaiAkhir);
             $raport->nilai_akhir = $nilaiAkhir;
         });
