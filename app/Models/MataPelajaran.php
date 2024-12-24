@@ -26,4 +26,8 @@ class MataPelajaran extends Model
     {
         return $this->hasMany(Penilaian::class);
     }
+    public function raports()
+    {
+        return $this->hasMany(Raport::class);
+    }
 }

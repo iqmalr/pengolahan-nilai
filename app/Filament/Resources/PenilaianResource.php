@@ -27,6 +27,11 @@ class PenilaianResource extends Resource
                 Forms\Components\Select::make('siswa_id')
                     ->relationship('siswa', 'nama')
                     ->required(),
+                Forms\Components\Select::make('kelas_id')
+                    ->relationship('kelas', 'nama_kelas')
+                    ->label('Kelas')
+                    ->required(),
+                Forms\Components\TextInput::make('semester')->numeric()->required(),
                 Forms\Components\Select::make('mapel_id')
                     ->relationship('mataPelajaran', 'nama_mapel')
                     ->required(),
@@ -34,7 +39,7 @@ class PenilaianResource extends Resource
                 Forms\Components\DatePicker::make('tanggal_penilaian')->required(),
                 Forms\Components\Select::make('jenis_penilaian')
                     ->options([
-                        'Ujian' => 'Ujian',
+                        // 'Ujian' => 'Ujian',
                         'Tugas' => 'Tugas',
                         'Ulangan Harian' => 'Ulangan Harian',
                         'UTS' => 'UTS',
@@ -48,6 +53,8 @@ class PenilaianResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('siswa.nama')->label('Siswa')->sortable(),
+                Tables\Columns\TextColumn::make('kelas.nama_kelas')->label('Kelas')->sortable(),
+                Tables\Columns\TextColumn::make('semester')->label('Semester')->sortable(),
                 Tables\Columns\TextColumn::make('mataPelajaran.nama_mapel')->label('Mata Pelajaran')->sortable(),
                 Tables\Columns\TextColumn::make('nilai')->sortable(),
                 Tables\Columns\TextColumn::make('jenis_penilaian')->sortable(),

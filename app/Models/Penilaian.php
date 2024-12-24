@@ -14,6 +14,8 @@ class Penilaian extends Model
     protected $fillable = [
         'siswa_id',
         'mapel_id',
+        'kelas_id',
+        'semester',
         'nilai',
         'tanggal_penilaian',
         'jenis_penilaian'
@@ -27,5 +29,9 @@ class Penilaian extends Model
     public function mataPelajaran()
     {
         return $this->belongsTo(MataPelajaran::class, 'mapel_id');
+    }
+    public function kelas()
+    {
+        return $this->belongsTo(Kelas::class, 'kelas_id');
     }
 }
